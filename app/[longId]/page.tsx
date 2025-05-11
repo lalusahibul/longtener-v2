@@ -34,22 +34,14 @@
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 
-type Props = {
-  params: {
-    longId: string
-  }
-}
-
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: { params: { longId: string } }) {
   const data = await prisma.tautan.findUnique({
-    where: { link_panjang: params.longId }
+    where: { link_panjang: params.longId },
   })
 
   if (!data) {
     return <p>Link tidak ditemukan</p>
   }
 
-  // Redirect ke link_asli
   redirect(data.link_asli)
 }
-
