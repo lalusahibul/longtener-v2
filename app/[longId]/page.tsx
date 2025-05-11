@@ -45,3 +45,4 @@ export default async function Page({ params }: { params: { longId: string } }) {
 
   redirect(data.link_asli)
 }
+
