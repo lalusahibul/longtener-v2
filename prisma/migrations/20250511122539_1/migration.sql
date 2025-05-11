@@ -6,3 +6,6 @@ CREATE TABLE "Tautan" (
 
     CONSTRAINT "Tautan_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Tautan_link_panjang_key" ON "Tautan"("link_panjang");
