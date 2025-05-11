@@ -1,46 +1,41 @@
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
-import type { Metadata } from 'next'
 
-// Generate metadata dinamis
-export async function generateMetadata({ params }: { params: { longId: string } }): Promise<Metadata> {
-  return {
-    title: `Redirect: ${params.longId}`,
+export const dynamic = 'force-dynamic'
+
+interface PageParams {
+  params: {
+    longId: string
   }
 }
 
-export const dynamic = 'force-dynamic' // Pastikan halaman ini selalu dinamis
-
-export default async function Page({ params }: { params: { longId: string } }) {
+export default async function RedirectPage({ params }: PageParams) {
   try {
-    const data = await prisma.tautan.findUnique({
-      where: { link_panjang: params.longId },
+    // Cari data dari database
+    const linkData = await prisma.tautan.findUnique({
+      where: {
+        link_panjang: params.longId
+      }
     })
 
-    if (!data) {
+    // Jika tidak ditemukan
+    if (!linkData) {
       return (
         <div className="min-h-screen flex items-center justify-center">
-          <h1 className="text-2xl font-bold">404 - Link tidak ditemukan</h1>
+          <h1 className="text-2xl font-bold">404 - Link Tidak Ditemukan</h1>
         </div>
       )
     }
 
-    // Lakukan redirect
-    redirect(data.link_asli)
-    
-    // Fallback UI (tidak akan pernah di-render karena ada redirect)
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Sedang mengalihkan...</p>
-      </div>
-    )
+    // Redirect ke URL tujuan
+    return redirect(linkData.link_asli)
     
   } catch (error) {
-    console.error('Error redirect:', error)
+    console.error('Gagal redirect:', error)
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-2xl font-bold text-red-500">500 - Error Server</h1>
-        <p className="mt-2">Gagal memproses redirect</p>
+        <h1 className="text-2xl font-bold text-red-600">500 - Error Server</h1>
+        <p className="mt-4">Gagal memproses permintaan redirect</p>
       </div>
     )
   }
