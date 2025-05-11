@@ -36,11 +36,10 @@ import { prisma } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export async function GET(
-  request: NextRequest,
-  context: { params: { longId: string } }
-) {
-  const { longId } = context.params
+export async function GET(request: NextRequest) {
+  const url = new URL(request.url)
+  const pathParts = url.pathname.split('/')
+  const longId = pathParts[pathParts.length - 1] // Ambil [longId] dari URL
 
   try {
     const data = await prisma.tautan.findUnique({
