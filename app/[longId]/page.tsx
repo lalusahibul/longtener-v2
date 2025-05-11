@@ -1,31 +1,33 @@
 import { prisma } from '@/lib/prisma'
-import { NextResponse } from 'next/server'
+import { redirect } from 'next/navigation'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic' // Diperlukan untuk redirect dinamis
 
-export async function GET(
-  request: Request,
-  { params }: { params: { longId: string } }
-) {
+export default async function Page({ params }: { params: { longId: string } }) {
   try {
+    // Cari data tautan dari database
     const data = await prisma.tautan.findUnique({
       where: { link_panjang: params.longId }
     })
 
+    // Jika tautan tidak ditemukan
     if (!data) {
-      return NextResponse.json(
-        { error: 'Not found' },
-        { status: 404 }
+      return (
+        <div className="min-h-screen flex items-center justify-center">
+          <h1>404 - Link tidak ditemukan</h1>
+        </div>
       )
     }
 
-    return NextResponse.redirect(data.link_asli)
+    // Redirect ke URL asli
+    redirect(data.link_asli)
     
   } catch (error) {
-    console.error('API Error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+    console.error('Error:', error)
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <h1>500 - Terjadi kesalahan server</h1>
+      </div>
     )
   }
 }
