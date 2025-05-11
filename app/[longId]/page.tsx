@@ -31,28 +31,22 @@
 //     )
 //   }
 // }
-  
 import { prisma } from '@/lib/prisma'
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { redirect } from 'next/navigation'
 
-export async function GET(request: NextRequest) {
-  const url = new URL(request.url)
-  const pathParts = url.pathname.split('/')
-  const longId = pathParts[pathParts.length - 1] // Ambil [longId] dari URL
-
-  try {
-    const data = await prisma.tautan.findUnique({
-      where: { link_panjang: longId }
-    })
-
-    if (!data) {
-      return NextResponse.json({ error: 'Not found' }, { status: 404 })
-    }
-
-    return NextResponse.redirect(data.link_asli, { status: 301 })
-  } catch (error) {
-    console.error('API Error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
-  }
+interface Props {
+  params: { longId: string }
 }
+
+export default async function Page({ params }: Props) {
+  const data = await prisma.tautan.findUnique({
+    where: { link_panjang: params.longId }
+  })
+
+  if (!data) {
+    return <div>Link tidak ditemukan</div>
+  }
+
+  redirect(data.link_asli) // 🔁 Redirect langsung
+}
+
