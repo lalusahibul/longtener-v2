@@ -34,8 +34,10 @@
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 
-interface Props {
-  params: { longId: string }
+type Props = {
+  params: {
+    longId: string
+  }
 }
 
 export default async function Page({ params }: Props) {
@@ -44,9 +46,10 @@ export default async function Page({ params }: Props) {
   })
 
   if (!data) {
-    return <div>Link tidak ditemukan</div>
+    return <p>Link tidak ditemukan</p>
   }
 
-  redirect(data.link_asli) // 🔁 Redirect langsung
+  // Redirect ke link_asli
+  redirect(data.link_asli)
 }
 
