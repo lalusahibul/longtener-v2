@@ -37,9 +37,11 @@ export default function Home() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-between min-h-screen bg-gray-100 p-4">
+      <div />
+
       <div className="flex flex-col items-center w-full max-w-sm space-y-4">
-      <Toaster position="bottom-center" reverseOrder={false} />
+        <Toaster position="bottom-center" reverseOrder={false} />
         <form onSubmit={handleSubmit} className="flex w-full items-center space-x-2">
           <Input
             type="url"
@@ -48,7 +50,7 @@ export default function Home() {
             placeholder="https://example.com"
             className="w-full"
           />
-          <Button type="submit">Panjangkan😎👌</Button>
+          <Button type="submit">Panjangkan</Button>
         </form>
 
         {/* Menampilkan shortUrl jika ada */}
@@ -58,12 +60,15 @@ export default function Home() {
               value={lUrl}
               readOnly
               placeholder="Short URL"
-              className="w-full mb-2"
+              className="w-full mb-2 p-2 border rounded-md"
             />
             <Button onClick={handleCopy} className="w-full">Salin</Button>
           </div>
         )}
       </div>
+      <footer className="text-center text-sm text-gray-500 py-4">
+        Made with 💔 by <span className="font-semibold text-gray-700">Lalu Sahibul</span>
+      </footer>
     </div>
   )
 }
