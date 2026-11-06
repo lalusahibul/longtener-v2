@@ -3,6 +3,7 @@
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+//output   = "../lib/generated/prisma"
 
 generator client {
   provider = "prisma-client-js"
@@ -10,12 +11,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Tautan {
-  id           Int    @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   link_asli    String
-  link_panjang String @unique @db.Text
+  link_panjang String   @unique @db.Text
+  createdAt    DateTime @default(now()) @map("created_at")
 }

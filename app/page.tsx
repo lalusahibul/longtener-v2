@@ -13,7 +13,7 @@ export default function Home() {
     e.preventDefault()
     if (!url) return toast.error("URL nya di isi dulu tolol!")
 
-    const res = await fetch('/api/', {
+    const res = await fetch('/api/link', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ url }),

@@ -18,5 +18,6 @@ datasource db {
 model Tautan {
   id Int @id @default(autoincrement())
   link_asli String
-  link_panjang String @unique @db.Text 
+  link_panjang String @unique @db.Text
+  createdAt    DateTime @default(now()) @map("created_at") 
 }

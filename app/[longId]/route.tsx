@@ -3,11 +3,12 @@ import { NextResponse } from 'next/server'
 
 export async function GET(
   request: Request,
-  { params }: { params: { longId: string } }
+  { params }: { params: Promise<{ longId: string }> } // params berupa Promise di Next.js 15+
 ) {
   try {
-    // Pastikan params sudah diakses dengan benar
-    const { longId } = params;
+    // Tunggu (await) hingga params selesai di-resolve
+    const resolvedParams = await params;
+    const { longId } = resolvedParams;
 
     const data = await prisma.tautan.findUnique({
       where: { link_panjang: longId }

@@ -893,18 +893,21 @@ export namespace Prisma {
     id: number | null
     link_asli: string | null
     link_panjang: string | null
+    createdAt: Date | null
   }
 
   export type TautanMaxAggregateOutputType = {
     id: number | null
     link_asli: string | null
     link_panjang: string | null
+    createdAt: Date | null
   }
 
   export type TautanCountAggregateOutputType = {
     id: number
     link_asli: number
     link_panjang: number
+    createdAt: number
     _all: number
   }
 
@@ -921,18 +924,21 @@ export namespace Prisma {
     id?: true
     link_asli?: true
     link_panjang?: true
+    createdAt?: true
   }
 
   export type TautanMaxAggregateInputType = {
     id?: true
     link_asli?: true
     link_panjang?: true
+    createdAt?: true
   }
 
   export type TautanCountAggregateInputType = {
     id?: true
     link_asli?: true
     link_panjang?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -1026,6 +1032,7 @@ export namespace Prisma {
     id: number
     link_asli: string
     link_panjang: string
+    createdAt: Date
     _count: TautanCountAggregateOutputType | null
     _avg: TautanAvgAggregateOutputType | null
     _sum: TautanSumAggregateOutputType | null
@@ -1051,27 +1058,31 @@ export namespace Prisma {
     id?: boolean
     link_asli?: boolean
     link_panjang?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["tautan"]>
 
   export type TautanSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     link_asli?: boolean
     link_panjang?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["tautan"]>
 
   export type TautanSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     link_asli?: boolean
     link_panjang?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["tautan"]>
 
   export type TautanSelectScalar = {
     id?: boolean
     link_asli?: boolean
     link_panjang?: boolean
+    createdAt?: boolean
   }
 
-  export type TautanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "link_asli" | "link_panjang", ExtArgs["result"]["tautan"]>
+  export type TautanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "link_asli" | "link_panjang" | "createdAt", ExtArgs["result"]["tautan"]>
 
   export type $TautanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Tautan"
@@ -1080,6 +1091,7 @@ export namespace Prisma {
       id: number
       link_asli: string
       link_panjang: string
+      createdAt: Date
     }, ExtArgs["result"]["tautan"]>
     composites: {}
   }
@@ -1506,6 +1518,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Tautan", 'Int'>
     readonly link_asli: FieldRef<"Tautan", 'String'>
     readonly link_panjang: FieldRef<"Tautan", 'String'>
+    readonly createdAt: FieldRef<"Tautan", 'DateTime'>
   }
     
 
@@ -1889,7 +1902,8 @@ export namespace Prisma {
   export const TautanScalarFieldEnum: {
     id: 'id',
     link_asli: 'link_asli',
-    link_panjang: 'link_panjang'
+    link_panjang: 'link_panjang',
+    createdAt: 'createdAt'
   };
 
   export type TautanScalarFieldEnum = (typeof TautanScalarFieldEnum)[keyof typeof TautanScalarFieldEnum]
@@ -1945,6 +1959,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1968,12 +1996,14 @@ export namespace Prisma {
     id?: IntFilter<"Tautan"> | number
     link_asli?: StringFilter<"Tautan"> | string
     link_panjang?: StringFilter<"Tautan"> | string
+    createdAt?: DateTimeFilter<"Tautan"> | Date | string
   }
 
   export type TautanOrderByWithRelationInput = {
     id?: SortOrder
     link_asli?: SortOrder
     link_panjang?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type TautanWhereUniqueInput = Prisma.AtLeast<{
@@ -1983,12 +2013,14 @@ export namespace Prisma {
     OR?: TautanWhereInput[]
     NOT?: TautanWhereInput | TautanWhereInput[]
     link_asli?: StringFilter<"Tautan"> | string
+    createdAt?: DateTimeFilter<"Tautan"> | Date | string
   }, "id" | "link_panjang">
 
   export type TautanOrderByWithAggregationInput = {
     id?: SortOrder
     link_asli?: SortOrder
     link_panjang?: SortOrder
+    createdAt?: SortOrder
     _count?: TautanCountOrderByAggregateInput
     _avg?: TautanAvgOrderByAggregateInput
     _max?: TautanMaxOrderByAggregateInput
@@ -2003,45 +2035,53 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Tautan"> | number
     link_asli?: StringWithAggregatesFilter<"Tautan"> | string
     link_panjang?: StringWithAggregatesFilter<"Tautan"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Tautan"> | Date | string
   }
 
   export type TautanCreateInput = {
     link_asli: string
     link_panjang: string
+    createdAt?: Date | string
   }
 
   export type TautanUncheckedCreateInput = {
     id?: number
     link_asli: string
     link_panjang: string
+    createdAt?: Date | string
   }
 
   export type TautanUpdateInput = {
     link_asli?: StringFieldUpdateOperationsInput | string
     link_panjang?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TautanUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     link_asli?: StringFieldUpdateOperationsInput | string
     link_panjang?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TautanCreateManyInput = {
     id?: number
     link_asli: string
     link_panjang: string
+    createdAt?: Date | string
   }
 
   export type TautanUpdateManyMutationInput = {
     link_asli?: StringFieldUpdateOperationsInput | string
     link_panjang?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TautanUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     link_asli?: StringFieldUpdateOperationsInput | string
     link_panjang?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2070,10 +2110,22 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type TautanCountOrderByAggregateInput = {
     id?: SortOrder
     link_asli?: SortOrder
     link_panjang?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type TautanAvgOrderByAggregateInput = {
@@ -2084,12 +2136,14 @@ export namespace Prisma {
     id?: SortOrder
     link_asli?: SortOrder
     link_panjang?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type TautanMinOrderByAggregateInput = {
     id?: SortOrder
     link_asli?: SortOrder
     link_panjang?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type TautanSumOrderByAggregateInput = {
@@ -2130,8 +2184,26 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -2165,6 +2237,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2209,6 +2292,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
 
